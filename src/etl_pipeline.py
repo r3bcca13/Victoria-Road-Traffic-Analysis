@@ -98,7 +98,7 @@ def process_csv(csv_file, selected_sites: pd.Series) -> pd.DataFrame:
     df[volume_cols] = df[volume_cols].mask(neg_mask, 0)
 
     # Type conversions
-    df["datetime"] = pd.to_datetime(df["datetime"])
+    df["datetime"] = pd.to_datetime(df["datetime"]).astype("datetime64[us]")
     df[volume_cols] = df[volume_cols].astype("int16")
 
     # Aggregate 15-min volumes → hourly
